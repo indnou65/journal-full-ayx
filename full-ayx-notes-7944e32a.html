@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ayx · 一处安静的站点</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", system-ui, sans-serif;
+      background: #fafaf8;
+      color: #2f2d2a;
+      line-height: 1.7;
+      padding: 0 1.2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .page {
+      max-width: 680px;
+      width: 100%;
+      margin: 3.2rem auto 5rem;
+    }
+
+    /* 开场 — 留白 + 小字号引句 */
+    .opening {
+      margin-bottom: 2.8rem;
+    }
+
+    .opening p {
+      font-size: 1.05rem;
+      letter-spacing: 0.02em;
+      color: #5b5853;
+      border-left: 3px solid #cabcaf;
+      padding-left: 1.2rem;
+      font-weight: 350;
+    }
+
+    /* 主标题 */
+    h1 {
+      font-size: 2.8rem;
+      font-weight: 350;
+      letter-spacing: -0.01em;
+      margin: 1rem 0 0.25rem 0;
+      line-height: 1.2;
+      color: #1b1a18;
+    }
+
+    h1 span {
+      font-weight: 450;
+      color: #7f6e5d;
+    }
+
+    /* 承接段落 — 清新分段 */
+    .intro-text {
+      margin: 1.8rem 0 2.5rem 0;
+    }
+
+    .intro-text p {
+      margin-bottom: 1.4rem;
+      font-size: 1rem;
+      color: #3e3b36;
+    }
+
+    .intro-text a {
+      color: #7f6e5d;
+      text-decoration: none;
+      border-bottom: 1px solid #d4cdc4;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .intro-text a:hover {
+      border-bottom-color: #7f6e5d;
+      color: #4e453c;
+    }
+
+    /* 特点列表 — 清爽卡片式 */
+    .features-section {
+      margin: 2.8rem 0 2.2rem 0;
+    }
+
+    .features-section h2 {
+      font-size: 1.5rem;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+      color: #2f2d2a;
+      margin-bottom: 1.2rem;
+      border-bottom: 1px solid #e7e2db;
+      padding-bottom: 0.5rem;
+    }
+
+    .feature-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+
+    .feature-item {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 1.2rem 1.5rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02), 0 1px 3px rgba(0,0,0,0.03);
+      border: 1px solid #efebe6;
+      transition: box-shadow 0.15s, border-color 0.15s;
+    }
+
+    .feature-item:hover {
+      border-color: #ddd4ca;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.03), 0 2px 5px rgba(0,0,0,0.02);
+    }
+
+    .feature-title {
+      font-weight: 450;
+      font-size: 1.05rem;
+      color: #2a2723;
+      margin-bottom: 0.25rem;
+      display: flex;
+      align-items: baseline;
+      gap: 0.4rem;
+    }
+
+    .feature-title::before {
+      content: "·";
+      color: #b7a99c;
+      font-weight: 700;
+      margin-right: 0.2rem;
+    }
+
+    .feature-desc {
+      font-size: 0.94rem;
+      color: #55514b;
+      line-height: 1.6;
+    }
+
+    /* 温和结尾 — 自然收束 */
+    .closing {
+      margin: 3rem 0 1.5rem 0;
+      padding-top: 1.5rem;
+      border-top: 1px solid #ece7e0;
+    }
+
+    .closing p {
+      font-size: 0.98rem;
+      color: #5b5750;
+      max-width: 580px;
+    }
+
+    .closing a {
+      color: #6f6254;
+      text-decoration: none;
+      border-bottom: 1px solid #d4cdc4;
+      transition: border-color 0.2s;
+    }
+
+    .closing a:hover {
+      border-bottom-color: #6f6254;
+    }
+
+    /* FAQ 摘要 (简洁) */
+    .faq-mini {
+      margin-top: 2.5rem;
+      background: #f4f1ed;
+      border-radius: 16px;
+      padding: 1.5rem 1.8rem;
+    }
+
+    .faq-mini h3 {
+      font-size: 1.1rem;
+      font-weight: 400;
+      margin-bottom: 0.75rem;
+      color: #2b2925;
+    }
+
+    .faq-mini details {
+      margin-bottom: 0.6rem;
+      font-size: 0.95rem;
+    }
+
+    .faq-mini summary {
+      cursor: pointer;
+      color: #4e4942;
+      font-weight: 400;
+      padding: 0.3rem 0;
+      transition: color 0.15s;
+    }
+
+    .faq-mini summary:hover {
+      color: #2f2a24;
+    }
+
+    .faq-mini details[open] summary {
+      color: #2f2a24;
+    }
+
+    .faq-mini .answer {
+      color: #5b5750;
+      margin: 0.4rem 0 0.6rem 0.8rem;
+      padding-left: 0.8rem;
+      border-left: 2px solid #d5cbc1;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #e7e2db;
+      margin: 2rem 0;
+    }
+
+    /* 响应式微调 */
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 2.1rem;
+      }
+      .opening p {
+        font-size: 0.95rem;
+        padding-left: 1rem;
+      }
+      .feature-item {
+        padding: 1rem 1.2rem;
+      }
+      .page {
+        margin: 1.8rem auto 3rem;
+      }
+      .faq-mini {
+        padding: 1.2rem 1.2rem;
+      }
+    }
+
+    /* 小字点缀 */
+    .quiet-note {
+      font-size: 0.85rem;
+      color: #9b938a;
+      margin-top: 2.2rem;
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- 开场短句 -->
+  <div class="opening">
+    <p>偶然经过一个站点，界面干净，没有多余声响。</p>
+  </div>
+
+  <!-- 主标题 -->
+  <h1>关于 <span>ayx</span></h1>
+
+  <!-- 承接段落：介绍与可信说明 -->
+  <div class="intro-text">
+    <p>
+      在浏览网络时，我们常常遇见花哨的承诺和紧迫的按钮。而这里不太一样——
+      <a href="https://full-ayx.com.cn">ayx</a> 给人的第一印象是朴素、直白。
+      它没有铺满屏幕的弹窗，也没有催促注册的标语。从页面结构到措辞，都保持一种“先看看再说”的从容。
+    </p>
+    <p>
+      如果你正在寻找一个信息架构清晰的站点，且不想被浮夸的宣传干扰判断，
+      那么 <a href="https://full-ayx.com.cn">ayx</a> 或许恰好符合你的节奏。
+      它的内容围绕实用方向展开，不刻意堆砌热词，也不渲染焦虑。
+      在当下互联网环境中，这种克制本身就构成一种可信度。
+    </p>
+  </div>
+
+  <!-- 特点列表 -->
+  <div class="features-section">
+    <h2>几个值得留意的特点</h2>
+    <div class="feature-grid">
+      <div class="feature-item">
+        <div class="feature-title">页面承载清晰</div>
+        <div class="feature-desc">没有冗余的侧栏或浮动广告，主体内容占满视野，阅读体验接近纸质文档。</div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-title">信息路径直接</div>
+        <div class="feature-desc">从首页到具体页面，点击层级很少超过两次，也不会突然跳转到意料之外的页面。</div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-title">语气温和中立</div>
+        <div class="feature-desc">文字表述偏重陈述事实，少用感叹号和绝对化词汇，留给访客自己判断的空间。</div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-title">长期维护痕迹</div>
+        <div class="feature-desc">从更新日志和内容连贯性能看出，这不是一个短期搭建的页面，背后有持续的梳理。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ 摘要 — 偏场景化 -->
+  <div class="faq-mini">
+    <h3>常见想法</h3>
+    <details>
+      <summary>这个站点适合什么人？</summary>
+      <div class="answer">对信息质量有要求，不愿意被花哨设计分散注意力的访问者。无论是快速查阅还是仔细浏览，都不会感到被打扰。</div>
+    </details>
+    <details>
+      <summary>内容可信吗？</summary>
+      <div class="answer">站内引用和说明均标注来源或上下文，没有模糊的断言。你可以对照原始信息自行核实，网站本身也鼓励这一点。</div>
+    </details>
+    <details>
+      <summary>是否需要注册或下载？</summary>
+      <div class="answer">在浏览公开内容时无需注册，也没有强制下载行为。所有交互都基于自愿和明确提示。</div>
+    </details>
+  </div>
+
+  <!-- 温和结尾 -->
+  <div class="closing">
+    <p>
+      网络的迷人之处，在于总有一些角落保留着平实的对话感。
+      <a href="https://full-ayx.com.cn">ayx</a> 便是这样一个地方——
+      它不着急说服你，只是把内容放在那里，等你空闲时随便翻翻。
+      如果你恰好路过，不妨进去看两眼，也许会发现某段文字正好回应了你一直以来的疑问。
+    </p>
+    <p style="margin-top: 1rem; font-style: italic; color: #7d756c;">
+      没有催促，没有浮夸，仅仅是一个站点该有的样子。
+    </p>
+  </div>
+
+  <!-- 极低调装饰 -->
+  <div class="quiet-note">·</div>
+
+</div>
+</body>
+</html>
